@@ -1,0 +1,273 @@
+﻿<Window x:Class="GorbanWPFTest.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GorbanWPFTest"
+        xmlns:viewmodels="clr-namespace:GorbanWPFTest.ViewModels"
+        mc:Ignorable="d"
+        Title="Склад техники" Height="700" Width="1000"
+        WindowStartupLocation="CenterScreen"
+        Background="#FFF5E6">
+
+    <Window.DataContext>
+        <viewmodels:MainWindowViewModel/>
+    </Window.DataContext>
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Text="Склад техники" FontSize="28" FontWeight="Bold" 
+                   Foreground="#CC6B2C" HorizontalAlignment="Center" Margin="0,0,0,20"/>
+
+        <TabControl Grid.Row="1" Background="#FFF5E6" BorderBrush="#FFD4A8" BorderThickness="1">
+
+            <TabItem Header="Производители" Background="#FFD4A8" Foreground="#333333" FontWeight="Bold">
+                <Grid Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0" Text="Производители" FontSize="20" FontWeight="Bold" 
+                               Foreground="#CC6B2C" Margin="0,0,0,15"/>
+
+                    <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,0,0,10">
+                        <TextBox Text="{Binding ManufacturersVM.NewName}" Width="200" Margin="0,0,10,0" 
+                                 VerticalContentAlignment="Center" Padding="5"/>
+                        <TextBox Text="{Binding ManufacturersVM.NewDescription}" Width="300" Margin="0,0,10,0" 
+                                 VerticalContentAlignment="Center" Padding="5"/>
+                        <Button Content="Добавить" Command="{Binding ManufacturersVM.AddCommand}" 
+                                Background="#FF8C42" Foreground="White" FontWeight="Bold" 
+                                Padding="15,8" Margin="0,0,10,0" BorderThickness="0" Cursor="Hand"/>
+                        <Button Content="Обновить" Command="{Binding ManufacturersVM.UpdateCommand}" 
+                                Background="#FF8C42" Foreground="White" FontWeight="Bold" 
+                                Padding="15,8" Margin="0,0,10,0" BorderThickness="0" Cursor="Hand"/>
+                        <Button Content="Удалить" Command="{Binding ManufacturersVM.DeleteCommand}" 
+                                Background="#FF6B6B" Foreground="White" FontWeight="Bold" 
+                                Padding="15,8" Margin="0,0,10,0" BorderThickness="0" Cursor="Hand"/>
+                        <Button Content="Очистить" Command="{Binding ManufacturersVM.ClearCommand}" 
+                                Background="#6C757D" Foreground="White" FontWeight="Bold" 
+                                Padding="15,8" BorderThickness="0" Cursor="Hand"/>
+                    </StackPanel>
+
+                    <ListBox Grid.Row="2" ItemsSource="{Binding ManufacturersVM.Manufacturers}" 
+                             SelectedItem="{Binding ManufacturersVM.SelectedManufacturer}"
+                             Background="White" BorderBrush="#FFD4A8" BorderThickness="1">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Border BorderBrush="#E0E0E0" BorderThickness="0,0,0,1" Padding="10,5">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="200"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="150"/>
+                                            <ColumnDefinition Width="150"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Grid.Column="0" Text="{Binding Name}" FontWeight="Bold" Foreground="#333"/>
+                                        <TextBlock Grid.Column="1" Text="{Binding Description}" Foreground="#666"/>
+                                        <TextBlock Grid.Column="2" Text="{Binding CreatedAt}" Foreground="#999" FontSize="11"/>
+                                        <TextBlock Grid.Column="3" Text="{Binding UpdatedAt}" Foreground="#999" FontSize="11"/>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Типы техники" Background="#FFD4A8" Foreground="#333333" FontWeight="Bold">
+                <Grid Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0" Text="Типы техники" FontSize="20" FontWeight="Bold" 
+                               Foreground="#CC6B2C" Margin="0,0,0,15"/>
+
+                    <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,0,0,10">
+                        <TextBox Text="{Binding EquipmentTypesVM.NewName}" Width="200" Margin="0,0,10,0" 
+                                 VerticalContentAlignment="Center" Padding="5"/>
+                        <TextBox Text="{Binding EquipmentTypesVM.NewDescription}" Width="300" Margin="0,0,10,0" 
+                                 VerticalContentAlignment="Center" Padding="5"/>
+                        <Button Content="Добавить" Command="{Binding EquipmentTypesVM.AddCommand}" 
+                                Background="#FF8C42" Foreground="White" FontWeight="Bold" 
+                                Padding="15,8" Margin="0,0,10,0" BorderThickness="0" Cursor="Hand"/>
+                        <Button Content="Обновить" Command="{Binding EquipmentTypesVM.UpdateCommand}" 
+                                Background="#FF8C42" Foreground="White" FontWeight="Bold" 
+                                Padding="15,8" Margin="0,0,10,0" BorderThickness="0" Cursor="Hand"/>
+                        <Button Content="Удалить" Command="{Binding EquipmentTypesVM.DeleteCommand}" 
+                                Background="#FF6B6B" Foreground="White" FontWeight="Bold" 
+                                Padding="15,8" Margin="0,0,10,0" BorderThickness="0" Cursor="Hand"/>
+                        <Button Content="Очистить" Command="{Binding EquipmentTypesVM.ClearCommand}" 
+                                Background="#6C757D" Foreground="White" FontWeight="Bold" 
+                                Padding="15,8" BorderThickness="0" Cursor="Hand"/>
+                    </StackPanel>
+
+                    <ListBox Grid.Row="2" ItemsSource="{Binding EquipmentTypesVM.EquipmentTypes}" 
+                             SelectedItem="{Binding EquipmentTypesVM.SelectedEquipmentType}"
+                             Background="White" BorderBrush="#FFD4A8" BorderThickness="1">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Border BorderBrush="#E0E0E0" BorderThickness="0,0,0,1" Padding="10,5">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="200"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="150"/>
+                                            <ColumnDefinition Width="150"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Grid.Column="0" Text="{Binding Name}" FontWeight="Bold" Foreground="#333"/>
+                                        <TextBlock Grid.Column="1" Text="{Binding Description}" Foreground="#666"/>
+                                        <TextBlock Grid.Column="2" Text="{Binding CreatedAt}" Foreground="#999" FontSize="11"/>
+                                        <TextBlock Grid.Column="3" Text="{Binding UpdatedAt}" Foreground="#999" FontSize="11"/>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Страны" Background="#FFD4A8" Foreground="#333333" FontWeight="Bold">
+                <Grid Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0" Text="Страны" FontSize="20" FontWeight="Bold" 
+                               Foreground="#CC6B2C" Margin="0,0,0,15"/>
+
+                    <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,0,0,10">
+                        <TextBox Text="{Binding CountriesVM.NewName}" Width="200" Margin="0,0,10,0" 
+                                 VerticalContentAlignment="Center" Padding="5"/>
+                        <TextBox Text="{Binding CountriesVM.NewCode}" Width="100" Margin="0,0,10,0" 
+                                 VerticalContentAlignment="Center" Padding="5"/>
+                        <Button Content="Добавить" Command="{Binding CountriesVM.AddCommand}" 
+                                Background="#FF8C42" Foreground="White" FontWeight="Bold" 
+                                Padding="15,8" Margin="0,0,10,0" BorderThickness="0" Cursor="Hand"/>
+                        <Button Content="Обновить" Command="{Binding CountriesVM.UpdateCommand}" 
+                                Background="#FF8C42" Foreground="White" FontWeight="Bold" 
+                                Padding="15,8" Margin="0,0,10,0" BorderThickness="0" Cursor="Hand"/>
+                        <Button Content="Удалить" Command="{Binding CountriesVM.DeleteCommand}" 
+                                Background="#FF6B6B" Foreground="White" FontWeight="Bold" 
+                                Padding="15,8" Margin="0,0,10,0" BorderThickness="0" Cursor="Hand"/>
+                        <Button Content="Очистить" Command="{Binding CountriesVM.ClearCommand}" 
+                                Background="#6C757D" Foreground="White" FontWeight="Bold" 
+                                Padding="15,8" BorderThickness="0" Cursor="Hand"/>
+                    </StackPanel>
+
+                    <ListBox Grid.Row="2" ItemsSource="{Binding CountriesVM.Countries}" 
+                             SelectedItem="{Binding CountriesVM.SelectedCountry}"
+                             Background="White" BorderBrush="#FFD4A8" BorderThickness="1">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Border BorderBrush="#E0E0E0" BorderThickness="0,0,0,1" Padding="10,5">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="200"/>
+                                            <ColumnDefinition Width="100"/>
+                                            <ColumnDefinition Width="150"/>
+                                            <ColumnDefinition Width="150"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Grid.Column="0" Text="{Binding Name}" FontWeight="Bold" Foreground="#333"/>
+                                        <TextBlock Grid.Column="1" Text="{Binding Code}" Foreground="#666"/>
+                                        <TextBlock Grid.Column="2" Text="{Binding CreatedAt}" Foreground="#999" FontSize="11"/>
+                                        <TextBlock Grid.Column="3" Text="{Binding UpdatedAt}" Foreground="#999" FontSize="11"/>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Список позиций" Background="#FFD4A8" Foreground="#333333" FontWeight="Bold">
+                <Grid Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0" Text="Список позиций" FontSize="20" FontWeight="Bold" 
+                               Foreground="#CC6B2C" Margin="0,0,0,15"/>
+
+                    <WrapPanel Grid.Row="1" Margin="0,0,0,10">
+                        <TextBox Text="{Binding EquipmentItemsVM.SearchText}" Width="200" Margin="0,0,10,0" 
+                                 VerticalContentAlignment="Center" Padding="5"/>
+                        <Button Content="Поиск" Command="{Binding EquipmentItemsVM.SearchCommand}" 
+                                Background="#FF8C42" Foreground="White" FontWeight="Bold" 
+                                Padding="15,8" Margin="0,0,10,0" BorderThickness="0" Cursor="Hand"/>
+                        <Button Content="Очистить фильтры" Command="{Binding EquipmentItemsVM.ClearFiltersCommand}" 
+                                Background="#6C757D" Foreground="White" FontWeight="Bold" 
+                                Padding="15,8" BorderThickness="0" Cursor="Hand"/>
+                        <Button Content="Добавить позицию" Background="#28A745" Foreground="White" FontWeight="Bold" 
+                                Padding="15,8" Margin="10,0,0,0" BorderThickness="0" Cursor="Hand"/>
+                    </WrapPanel>
+
+                    <WrapPanel Grid.Row="2" Margin="0,0,0,10">
+                        <ComboBox ItemsSource="{Binding ManufacturersVM.Manufacturers}" 
+                                  DisplayMemberPath="Name" SelectedValuePath="Id"
+                                  SelectedValue="{Binding EquipmentItemsVM.SelectedManufacturerId}"
+                                  Width="150" Margin="0,0,10,0" VerticalContentAlignment="Center"/>
+                        <ComboBox ItemsSource="{Binding EquipmentTypesVM.EquipmentTypes}" 
+                                  DisplayMemberPath="Name" SelectedValuePath="Id"
+                                  SelectedValue="{Binding EquipmentItemsVM.SelectedEquipmentTypeId}"
+                                  Width="150" Margin="0,0,10,0" VerticalContentAlignment="Center"/>
+                        <ComboBox ItemsSource="{Binding CountriesVM.Countries}" 
+                                  DisplayMemberPath="Name" SelectedValuePath="Id"
+                                  SelectedValue="{Binding EquipmentItemsVM.SelectedCountryId}"
+                                  Width="150" Margin="0,0,10,0" VerticalContentAlignment="Center"/>
+                        <TextBox Text="{Binding EquipmentItemsVM.MinPrice}" Width="100" Margin="0,0,10,0" 
+                                 VerticalContentAlignment="Center" Padding="5"/>
+                        <TextBlock Text="-" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                        <TextBox Text="{Binding EquipmentItemsVM.MaxPrice}" Width="100" Margin="0,0,10,0" 
+                                 VerticalContentAlignment="Center" Padding="5"/>
+                    </WrapPanel>
+
+                    <ListBox Grid.Row="3" ItemsSource="{Binding EquipmentItemsVM.EquipmentItems}" 
+                             SelectedItem="{Binding EquipmentItemsVM.SelectedItem}"
+                             Background="White" BorderBrush="#FFD4A8" BorderThickness="1">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Border BorderBrush="#E0E0E0" BorderThickness="0,0,0,1" Padding="10,5">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="150"/>
+                                            <ColumnDefinition Width="150"/>
+                                            <ColumnDefinition Width="150"/>
+                                            <ColumnDefinition Width="100"/>
+                                            <ColumnDefinition Width="100"/>
+                                            <ColumnDefinition Width="150"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Grid.Column="0" Text="{Binding ManufacturerName}" FontWeight="Bold" Foreground="#333"/>
+                                        <TextBlock Grid.Column="1" Text="{Binding EquipmentTypeName}" Foreground="#333"/>
+                                        <TextBlock Grid.Column="2" Text="{Binding Model}" Foreground="#333"/>
+                                        <TextBlock Grid.Column="3" Text="{Binding CountryName}" Foreground="#666"/>
+                                        <TextBlock Grid.Column="4" Text="{Binding Price}" Foreground="#CC6B2C" FontWeight="Bold"/>
+                                        <StackPanel Grid.Column="5" Orientation="Horizontal">
+                                            <Button Content="✎" Background="#FF8C42" Foreground="White" 
+                                                    Width="30" Height="30" Margin="0,0,5,0" BorderThickness="0" Cursor="Hand"/>
+                                            <Button Content="✕" Background="#FF6B6B" Foreground="White" 
+                                                    Width="30" Height="30" BorderThickness="0" Cursor="Hand"/>
+                                        </StackPanel>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
